@@ -1,0 +1,13 @@
+body {
+  color: blue;
+}
+
+.pic_class img {
+  width:30%;
+  height:10%;
+}
+
+span {
+  display: block;
+  margin-left: 10px;
+}

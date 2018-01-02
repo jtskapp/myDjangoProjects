@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+{% extends 'basicapp/basicapp_base.html' %}
+  {% block body_block %}
+  <div class="jumbotron">
+    <h1>Delete School {{ school.name }} ???</h1>
+    <form class="form-group" method="Post">
+      {% csrf_token %}
+      <input type="submit" class="btn btn-danger" value="Delete">
+      <a class="btn btn-primary" href="{% url 'basicapp:detail' pk=school.pk %}">Cancel</a>
+    </form>
+  </div>
+  {% endblock %}

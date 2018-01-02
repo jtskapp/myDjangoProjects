@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+{% extends 'basicapp/basicapp_base.html' %}
+  {% block body_block %}
+  <div class="jumbotron">
+    <h1>School List</h1>
+    <ol>
+      {% for school in schools %}
+      <h2>
+        <li>
+          {{ school.name }}
+          <a href="{{ school.pk }}">
+            <span class="glyphicon glyphicon-search"></span>
+          </a>
+          <a href="{% url 'basicapp:update' pk=school.pk %}">
+            <span class="glyphicon glyphicon-edit"></span>
+          </a>
+          <a href="{% url 'basicapp:delete' pk=school.pk %}">
+            <span class="glyphicon glyphicon-remove"></span>
+          </a>
+        </li>
+         </h2>
+      {% endfor %}
+    </ol>
+    <a href="{% url 'basicapp:create' %}">
+      <button class="btn btn-warning" type="button" name="Add">Add</button>
+    </a>
+  </div>
+  {% endblock %}

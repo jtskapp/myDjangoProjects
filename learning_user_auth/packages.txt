@@ -1,0 +1,6 @@
+[password hasher]
+pip install bcrypt
+pip install django[argon2]
+
+[django image library]
+pip install pillow

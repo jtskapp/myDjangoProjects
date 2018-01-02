@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static "css/firstprojstyle.css" %}"/>
+    <title>First App</title>
+  </head>
+  <body>
+      <h1>index.html, This is my first application, firstapp</h1>
+      {{ insert_data1 }}
+      <p></p>
+      <div class="container">
+        <h2>header 2 data</h2>
+        {{ insert_data2 }}
+        <p></p>
+        <h3>This is image placeholder</h3>
+        <div class="pic_class" >
+          <img src="{% static "images/bali.jpg" %}" alt="bali picture">
+        </div>
+      </div>
+      <div class="container">
+        <span class="label label-info">
+          <a href="{% url 'sample' %}">sample</a>
+        </span>
+        <span class="label label-info">
+          <a href="{% url 'user2' %}">user2</a>
+        </span>
+        <span class="label label-info">
+          <a href="{% url 'users' %}">users</a>
+        </span>
+      </div>
+  </body>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</html>
