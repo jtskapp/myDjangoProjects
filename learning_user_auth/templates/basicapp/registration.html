@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 {% extends 'basicapp/base.html' %}
   {% block body_block %}
-  <div class="jumbotron">
-    <h1>Page {{ name }}</h1>
+  <div class="container">
+    <div class="jumbotron">
+      <h1>Page {{ name }}</h1>
+    </div>
+  </div>
+  <div class="container">
     {% if registered %}
       <h1>Thanks for registering</h1>
     {% else %}
@@ -10,10 +14,29 @@
       <h3>Please fill in the below information :</h3>
       <form class="form-group" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        {{ user_form.as_p }}
-        {{ profile_form.as_p }}
-        <input class="btn btn-info" type="submit" value="Register">
+        <div class="form-group">
+          {{ user_form.as_p }}
+          {{ profile_form.as_p }}
+          <input class="btn btn-info" type="submit" value="Register">
+        </div>
       </form>
     {% endif %}
   </div>
+  <div class='form-group'>
+   <label class='control-label col-md-2 col-md-offset-2' for='id_email'>Contact</label>
+   <div class='col-md-6'>
+     <div class='form-group'>
+       <div class='col-md-11'>
+         <input class='form-control' id='id_email' placeholder='E-mail' type='text'>
+       </div>
+     </div>
+     <div class='form-group internal'>
+      <div class='col-md-11'>
+        <input class='form-control' id='id_phone' placeholder='Phone: (xxx) - xxx xxxx' type='text'>
+      </div>
+    </div>
+  </div>
+  </div>
+
+
   {% endblock %}

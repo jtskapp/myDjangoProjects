@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Order Form</title>
+  </head>
+  <body>
+    <h1>Welcome !</h1>
+    <h2>Please Submit your order here !</h2>
+    <form class="form-group" method="POST">
+      {{ NewOrderForm.as_p }}
+      {% csrf_token %}
+      <input class="btn btn-primary" type="submit" value="Submit">
+    </form>
+  </body>
+</html>
