@@ -1,16 +1,29 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <title>Order Form</title>
-  </head>
-  <body>
-    <h1>Welcome !</h1>
-    <h2>Please Submit your order here !</h2>
-    <form class="form-group" method="POST">
-      {{ NewOrderForm.as_p }}
-      {% csrf_token %}
-      <input class="btn btn-primary" type="submit" value="Submit">
-    </form>
-  </body>
-</html>
+{% extends 'base.html' %}
+  {% block body_block %}
+    <div class="container">
+      <h1>Welcome !</h1>
+      <h2>Please Submit your order here !</h2>
+        <div class="row">
+          <div class="col-sm-12 col-md-6">
+            <form class="form-group" method="POST">
+               {% csrf_token %}
+               {{ NewOrderForm.as_p }}
+               <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            {{ NewOrderForm.description }}
+          </div>
+          <div class="form-group">
+          <label for="id_size">Size</label>
+          {{ NewOrderForm.size }}
+          </div>
+        <div class="form-group">
+          {{ NewOrderForm.color }}
+        </div>
+        </div>
+    </div>
+
+  {% endblock %}
