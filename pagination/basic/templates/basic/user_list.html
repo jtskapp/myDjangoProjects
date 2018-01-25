@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+</head>
+<body>
+  <div class="container">
+  <div class="page-header">
+    <h2>User Profile</h2>
+  </div>
+
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Username</th>
+      <th>Age</th>
+      <th>Gender</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for user in userprofile %}
+      <tr>
+        <td>{{ user.member.username }}</td>
+        <td>{{ user.age }}</td>
+        <td>{{ user.gender }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% if page_obj.has_other_pages %}
+  <ul class="table pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="?page={{ page_obj.previous_page_number }}">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    {% for i in paginator.page_range %}
+      {% if page_obj.number == i %}
+        <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+      {% else %}
+        <li><a href="?page={{ i }}">{{ i }}</a></li>
+      {% endif %}
+    {% endfor %}
+    {% if page_obj.has_next %}
+      <li><a href="?page={{ page_obj.next_page_number }}">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+  </div>
+  <div class="container page-header">
+    <h3>User Info</h3>
+    {% if user_info %}
+      {% for user in user_info %}
+        {{ user.username }}
+      {% endfor %}
+    {% endif %}
+  </div>
+</body>
+</html>

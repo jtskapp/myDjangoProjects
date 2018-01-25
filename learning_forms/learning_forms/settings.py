@@ -12,6 +12,8 @@ https://docs.djangoproject.com/en/2.0/ref/settings/
 
 import os
 
+#os.environ['wsgi.url_scheme'] = 'https'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
@@ -25,7 +27,7 @@ SECRET_KEY = 'zl_dfn31ff6)+1kbj$f38ksjwj^t$uu2&9ou4d7-2s)%1f^mpm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -38,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'basic',
+    #'django_extensions',
 ]
 
 MIDDLEWARE = [
@@ -70,6 +73,12 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'learning_forms.wsgi.application'
 
+# HTTPS Security settings
+# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# SECURE_SSL_REDIRECT = True
+# SESSION_COOKIE_SECURE = True
+# CSRF_COOKIE_SECURE = True
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 # Database
 # https://docs.djangoproject.com/en/2.0/ref/settings/#databases

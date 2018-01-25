@@ -6,11 +6,11 @@ class OrderForm(forms.ModelForm):
     class Meta():
         model = Order
         fields = '__all__'
-        widgets = {
-            'description': forms.TextInput( attrs={ 'class': 'form-control', 'placeholder': 'My Shirt', 'required': True, 'label':'', } ),
-            'size': forms.TextInput( attrs={ 'class': 'form-control', 'placeholder': 'size', 'required': True, 'label':'',} ),
-            'color': forms.TextInput( attrs={ 'class': 'form-control', 'placeholder': 'color', 'required': True, 'label':'',} ),
-        }
+        # widgets = {
+        #     'description': forms.TextInput( attrs={ 'class': 'form-control', 'placeholder': 'My Shirt', 'required': True, 'label':'', } ),
+        #     'size': forms.MultipleChoiceField( attrs={ 'class': 'form-control', 'placeholder': 'size', 'required': True, 'label':'',} ),
+        #     'color': forms.MultipleChoiceField( attrs={ 'class': 'form-control', 'placeholder': 'color', 'required': True, 'label':'',} ),
+        # }
 
 
 class UserForm(forms.ModelForm):

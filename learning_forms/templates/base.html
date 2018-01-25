@@ -14,8 +14,8 @@
         </div>
         <ul class="nav navbar-nav">
           <li><a href="#">Home</a></li>
-          <li><a href="#">Schools</a></li>
-          <li><a href="#">Admin</a></li>
+          <li><a href="{% url 'orderform1' %}">Order Form 1</a></li>
+          <li><a href="{% url 'orderinfo'%}">Get Order Json</a></li>
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
@@ -26,20 +26,7 @@
       {% block body_block %}
         <!-- placeholder for child templates    -->
       {% endblock %}
-
-      <main>
-        <div class="container">
-          {% for message in messages %}
-            <div class="alert {{ message.tags }} alert-dismissible" role="alert">
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      </main>
-
+      {% include 'message.html' %}
   </body>
   <!-- jQuery library -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>

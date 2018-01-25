@@ -5,6 +5,22 @@ from django.core.validators import MaxValueValidator, MinValueValidator
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
+SIZE = (
+    ('XS', 'Extra Small'),
+    ('S', 'Small'),
+    ('M', 'Medium'),
+    ('L', 'Large'),
+    ('XL', 'Extra Large')
+)
+
+COLOR = (
+    ('BLK', 'Black'),
+    ('BLU', 'Blue'),
+    ('RED', 'Red'),
+    ('PURPL', 'Purple'),
+    ('GRN', 'Green'),
+    ('WHT', 'White')
+)
 
 # Create your models here.
 class Member(models.Model):
@@ -25,8 +41,14 @@ class Order(models.Model):
                 default=1,
                 validators=[MaxValueValidator(100), MinValueValidator(1)]
                 )
-    size = models.CharField(max_length=20,blank=True)
-    color = models.CharField(max_length=20,blank=True)
+    size = models.CharField(max_length=20,
+                choices=SIZE,
+                default='S',
+                blank=True)
+    color = models.CharField(max_length=20,
+                choices=COLOR,
+                default='WHT',
+                blank=True)
     price = models.DecimalField(max_digits=8, decimal_places=2)
 
     @property

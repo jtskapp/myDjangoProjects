@@ -11,7 +11,9 @@
           <a href="{{ school.pk }}">
             <span class="glyphicon glyphicon-search"></span>
           </a>
-          <a href="{% url 'basicapp:update' pk=school.pk %}">
+          <!-- <a class="addschool" href="{% url 'basicapp:update' pk=school.pk %}" title="Add School"> -->
+          <!-- <a class="addschool" data-form="{% url 'basicapp:update' pk=school.pk %}" title="Add School"> -->
+          <a class="addschool" data-form="{% url 'basicapp:update' pk=school.pk %}" title="Add School">
             <span class="glyphicon glyphicon-edit"></span>
           </a>
           <a href="{% url 'basicapp:delete' pk=school.pk %}">
@@ -25,4 +27,29 @@
       <button class="btn btn-warning" type="button" name="Add">Add</button>
     </a>
   </div>
+
+  <div>
+      <button class="btn btn-primary" data-toggle="modal" data-target="#schooledit">
+          SchoolEdit
+      </button>
+      {% include "basicapp/school_edit_form.html" %}
+  </div>
+
+  <!-- <button class="btn btn-warning" id="modal-control" type="button" name="Show">Modal Form</button>
+
+  <div class="modal hide" id="schoolModal">
+  </div> -->
+
+  <!-- <div id="overlay">
+       <div>
+            <p>Content you want the user to see goes here.</p>
+            <button class="btn btn-warning" id="close-modal-control" type="button" name="Close">Close Form</button>
+       </div>
+  </div>
+
+  <div id="somediv">
+        Click me!
+          <a  href="#" title="Add Site">add - NOT THIS ONE</a>
+  </div>   -->
+
   {% endblock %}

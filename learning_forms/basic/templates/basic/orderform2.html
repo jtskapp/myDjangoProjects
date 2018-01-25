@@ -1,0 +1,110 @@
+{% extends 'base.html' %}
+  {% block body_block %}
+    <div class="container">
+        <!-- <div class="row">
+          <div class="page-header">
+            <h2>Custom Form 1</h2>
+          </div>
+          <div class="col-sm-12 col-md-6">
+            <form class="form-group" method="POST">
+               {% csrf_token %}
+               {{ NewOrderForm.as_p }}
+               <input class="btn btn-primary" type="submit" value="Submit">
+            </form>
+          </div>
+        </div> -->
+
+        <!-- <div class="row">
+          <div class="page-header">
+            <h2>Custom Form 2</h2>
+          </div>
+          <form class="form-group" method="POST">
+            {% csrf_token %}
+            {{ NewOrderForm.non_field_errors }}
+            <div class="col-lg-12 col-sm-12 col-md-6">
+                {{ NewOrderForm.member.errors }}
+                <label class="control-label " for="{{ NewOrderForm.member.id_for_label }}">Member</label>
+                {{ NewOrderForm.member }}
+            </div>
+            <div class="col-lg-12 col-sm-12 col-md-6">
+                {{ NewOrderForm.url.errors }}
+                <label class="control-label " for="{{ NewOrderForm.url.id_for_label }}">URL</label>
+                {{ NewOrderForm.url }}
+            </div>
+            <div class="col-lg-4 col-sm-12 col-md-6">
+                {{ NewOrderForm.description.errors }}
+                <label class="control-label " for="{{ NewOrderForm.description.id_for_label }}">Description</label>
+                {{ NewOrderForm.description }}
+            </div>
+            <div class="col-lg-4 col-sm-12 col-md-6">
+                {{ NewOrderForm.size.errors }}
+                <label class="control-label " for="{{ NewOrderForm.size.id_for_label }}">size</label>
+                {{ NewOrderForm.size }}
+            </div>
+            <div class="col-lg-4 col-sm-12 col-md-6">
+                {{ NewOrderForm.color.errors }}
+                <label class="control-label " for="{{ NewOrderForm.color.id_for_label }}">color</label>
+                {{ NewOrderForm.color }}
+            </div>
+            <div class="col-lg-6 col-sm-12 col-md-6">
+                {{ NewOrderForm.quantity.errors }}
+                <label class="control-label " for="{{ NewOrderForm.quantity.id_for_label }}">Quantity</label>
+                {{ NewOrderForm.quantity }}
+            </div>
+            <div class="col-lg-6 col-sm-12 col-md-6">
+                {{ NewOrderForm.price.errors }}
+                <label class="control-label " for="{{ NewOrderForm.price.id_for_label }}">price</label>
+                {{ NewOrderForm.price }}
+            </div>
+            <div class="col-lg-12 col-sm-12 col-md-6">
+              <input class="btn btn-primary" type="submit" value="Submit">
+            </div>
+          </form>
+        </div> -->
+        <form method="post">
+          {% csrf_token %}
+
+          {% for hidden_field in NewOrderForm.hidden_fields %}
+            {{ hidden_field }}
+          {% endfor %}
+
+          {% if NewOrderForm.non_field_errors %}
+            <div class="alert alert-danger" role="alert">
+              {% for error in NewOrderForm.non_field_errors %}
+                {{ error }}
+              {% endfor %}
+            </div>
+          {% endif %}
+
+          {% for field in NewOrderForm.visible_fields %}
+            <div class="form-group">
+              {{ field.label_tag }}
+
+              {% if NewOrderForm.is_bound %}
+                {% if field.errors %}
+                  {% render_field field class="form-control is-invalid" %}
+                  {% for error in field.errors %}
+                    <div class="invalid-feedback">
+                      {{ error }}
+                    </div>
+                  {% endfor %}
+                {% else %}
+                  {% render_field field class="form-control is-valid" %}
+                {% endif %}
+              {% else %}
+                {% render_field field class="form-control" %}
+              {% endif %}
+
+              {% if field.help_text %}
+                <small class="form-text text-muted">{{ field.help_text }}</small>
+              {% endif %}
+            </div>
+          {% endfor %}
+
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+
+
+  </div>
+  {% endblock %}
