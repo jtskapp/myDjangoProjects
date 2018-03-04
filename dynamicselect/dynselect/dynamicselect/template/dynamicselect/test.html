@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>Dynamic DropDown</title>
+  </head>
+  <body>
+    <div class="container" style="width:50%">
+      <div class="jumbotron">
+        <h3>Dynamic DropDown List</h3>
+      </div>
+      <select class="form-control" name="continent" id="continent">
+        <option value="">Select continent</option>
+      </select>
+      <br>
+      <select class="form-control" name="country" id="country">
+        <option value="">Select Country</option>
+      </select>
+      <br>
+      <select class="form-control" name="location" id="location">
+        <option value="">Select Location</option>
+      </select>
+    </div>
+
+  </body>
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      data = '';
+      url = 'http://127.0.0.1:8000/get_json_data?';
+
+      $.ajax({
+        type: 'get',
+        dataType: "json",
+        url: url + 'continent=ASIAPAC',
+        data: data,
+        success: function (data) {
+            alert('completed');
+            console.log('Completed');
+            console.log(data.json_data);
+        }
+      });
+
+      function load_json_data(object,query) {
+        alert('in load');
+        console.log(object + ' - -' + query);
+        var html_code = '';
+        $.ajax({
+          dataType: "json",
+          url: url + object + '=' + query,
+          data: data,
+          success: function (data) {
+              alert('completed');
+              console.log('Completed');
+              console.log(data.json_data);
+          }
+        });
+
+        // $.ajax(url + object + '=' + query, function( data ) {
+        //   var items = [];
+        //   console.log(data);
+        //   alert(data);
+        //   $.each( data, function( key, val ) {
+        //     console.log("<li id='" + key + "'>" + val + "</li>");
+        //     //items.push( "<li id='" + key + "'>" + val + "</li>" );
+        //   });
+
+          // $( "<ul/>", {
+          //   "class": "my-new-list",
+          //   html: items.join( "" )
+          // }).appendTo( "body" );
+        // });
+      }
+
+    });
+  </script>
+
+</html>

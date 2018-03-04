@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Create New Locality</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+</head>
+<body>
+    {% if term %}
+        <p> Create a new entry in locality table for {{ term }}  </p>
+        Enter Tag:
+        <form method="get" action="">
+            <select name="tag" id="tag">
+                <option value="Z">Select a Tag</option>
+                {% for entry in tag_list %}
+                    <option value="{{ entry.id }}">{{ entry.name }}</option>
+                {% endfor %}
+            </select>
+            <br/>
+            <br/>
+            Enter Parent:
+            <br/>
+            <select name="parent" id="parent" disabled="true">
+                <option>Select a parent</option>
+            </select>
+            <br/>
+            <br/>
+            <input type="submit" value="Submit" />
+        </form>
+    {% endif %}
+</body>
+<script>
+$(document).ready(
+                 function() {
+                     $("select#tag").change(function() {
+                         if ($(this).val() == 'Z') {
+                             $("select#parent").html("<option>Select a parent</option>");
+                             $("select#parent").attr('disabled', true);
+                         }
+                         else {
+                             var url = "tag/" + $(this).val() + "/all_json_models";
+                             var tag = $(this).val();
+                             $.getJSON(url, function(parents) {
+                                 var options = '<option value="Z">Select a parent</option>';
+                                 for (var i = 0; i < parents.length; i++) {
+                                    options += '<option value="' + parents[i].pk + '">' + parents[i].fields['name'] + '</option>';
+                                 }
+                                 $("select#parent").html(options);
+                                 $("select#parent option:first").attr('selected', 'selected');
+                                 $("select#parent").attr('disabled', false);
+                             });
+                         }
+                     });
+
+
+                     $("select#parent").change(function(vent) {
+                         if ($(this).val() == -1) {
+                             return;
+                         }
+                     });
+                 });
+</script>
+</html>
